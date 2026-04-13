@@ -288,6 +288,30 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(0);
   }
 
+  .nav__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    background: none;
+    border: none;
+  }
+
+  .nav__close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
   .nav__link {
     font-size: 1.1rem;
     padding: 0.75rem 1rem;

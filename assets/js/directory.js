@@ -62,14 +62,22 @@
     overlay.className = 'nav-overlay';
     var movedToBody = false;
 
+    // Create close button
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'nav__close';
+    closeBtn.setAttribute('aria-label', 'Close menu');
+    closeBtn.innerHTML = '&#10005;';
+
     // Move nav to body on mobile so it escapes backdrop-filter containing block
     function handleResize() {
       var isMobile = window.matchMedia('(max-width: 768px)').matches;
       if (isMobile && !movedToBody) {
+        navLinks.insertBefore(closeBtn, navLinks.firstChild);
         document.body.appendChild(navLinks);
         document.body.appendChild(overlay);
         movedToBody = true;
       } else if (!isMobile && movedToBody) {
+        if (closeBtn.parentNode) closeBtn.parentNode.removeChild(closeBtn);
         navContainer.insertBefore(navLinks, navContainer.querySelector('.nav__actions'));
         if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
         navLinks.classList.remove('open');
@@ -105,8 +113,9 @@
       }
     });
 
-    // Close on overlay click
+    // Close on overlay or X button click
     overlay.addEventListener('click', closeMenu);
+    closeBtn.addEventListener('click', closeMenu);
 
     // Close on link click
     var links = navLinks.querySelectorAll('.nav__link');
