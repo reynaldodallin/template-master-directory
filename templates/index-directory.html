@@ -75,8 +75,11 @@
     </div>
   </header>
 
-  <!-- ═══ HERO ═══ -->
+  <!-- ═══ HERO (Parallax) ═══ -->
   <section class="hero" id="hero">
+    <div class="hero__bg" id="heroBg">
+      <img src="./assets/images/hero/hero-bg.webp" alt="{{DIRECTORY_CITY}} {{DIRECTORY_NICHE}} scene" width="1920" height="1080">
+    </div>
     <div class="hero__container">
       <span class="hero__badge">{{HERO_BADGE}}</span>
       <h1 class="hero__title">{{HERO_TITLE}}</h1>
@@ -194,9 +197,7 @@
       <h2 class="section__title">{{BLOG_TITLE}}</h2>
       <p class="section__subtitle">{{BLOG_DESCRIPTION}}</p>
       <div class="blog__grid" id="blogGrid">
-        <div class="blog-card blog-card--placeholder">
-          <div class="blog-card__body"><p>{{BLOG_EMPTY_MESSAGE}}</p></div>
-        </div>
+        {{BLOG_CARDS}}
       </div>
       <div class="blog__cta">
         <a href="{{BLOG_VIEW_ALL_URL}}" class="btn btn-outline" target="_blank" rel="noopener">{{BLOG_VIEW_ALL_LABEL}}</a>

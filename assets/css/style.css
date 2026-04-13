@@ -263,25 +263,55 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ══════════════════════════
-   HERO
+   HERO (Parallax + Background Image)
    ══════════════════════════ */
 .hero {
-  background: linear-gradient(135deg, #3B2314 0%, #6F4E37 50%, #D4A574 100%);
-  padding: clamp(4rem, 10vw, 8rem) 0 clamp(3rem, 8vw, 6rem);
-  text-align: center;
   position: relative;
   overflow: hidden;
+  padding: clamp(6rem, 14vw, 12rem) 0 clamp(4rem, 10vw, 8rem);
+  text-align: center;
+  min-height: 520px;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: -20% 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
+  background: linear-gradient(135deg,
+    rgba(59, 35, 20, 0.82) 0%,
+    rgba(111, 78, 55, 0.70) 50%,
+    rgba(212, 165, 116, 0.50) 100%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   background: radial-gradient(ellipse at 30% 50%, rgba(200, 134, 10, 0.15), transparent 60%);
 }
 
-[data-theme="dark"] .hero {
-  background: linear-gradient(135deg, #0F0904 0%, #2C1A0E 50%, #4A3224 100%);
+[data-theme="dark"] .hero::before {
+  background: linear-gradient(135deg,
+    rgba(15, 9, 4, 0.92) 0%,
+    rgba(44, 26, 14, 0.85) 50%,
+    rgba(74, 50, 36, 0.75) 100%);
 }
 
 .hero__container {
@@ -289,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   padding: 0 var(--container-px);
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero__badge {
@@ -1466,4 +1496,118 @@ h1, h2, h3, h4, h5, h6 {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ══════════════════════════
+   LEAFLET MAP
+   ══════════════════════════ */
+.listing-map {
+  width: 100%;
+  height: 350px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.listing-map__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 0.75rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg-alt);
+}
+
+.listing-map__placeholder i,
+.listing-map__placeholder svg {
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+}
+
+/* ══════════════════════════
+   BLOG CARDS (enhanced)
+   ══════════════════════════ */
+.blog-card--static {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+.blog-card--static:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blog-card--static .blog-card__image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-card--static .blog-card__image i,
+.blog-card--static .blog-card__image svg {
+  width: 48px;
+  height: 48px;
+  color: var(--color-text-muted);
+  opacity: 0.3;
+}
+
+.blog-card--static .blog-card__body {
+  padding: 1.25rem;
+}
+
+.blog-card--static .blog-card__category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.blog-card--static .blog-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.blog-card--static .blog-card__excerpt {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card--static .blog-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.blog-card--static .blog-card__readmore {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.blog-card--static .blog-card__readmore:hover {
+  text-decoration: underline;
 }

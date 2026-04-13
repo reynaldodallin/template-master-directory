@@ -179,6 +179,58 @@ def generate_category_card(cat, count):
 </a>'''
 
 
+def generate_blog_cards(config):
+    """Generate static blog cards as fallback (RSS integration not available)."""
+    niche = config.get("DIRECTORY_NICHE", "business")
+    city = config.get("DIRECTORY_CITY", "the city")
+
+    # Static blog posts that match the directory niche
+    blog_posts = config.get("BLOG_POSTS", [
+        {
+            "title": f"Top 10 Best {niche.title()} Spots in {city} — 2026 Guide",
+            "excerpt": f"Discover the most popular and highly-rated {niche} spots across {city}. From hidden gems to iconic destinations, our curated list has something for everyone.",
+            "category": "Guide",
+            "date": "Apr 2026",
+            "icon": "compass"
+        },
+        {
+            "title": f"What Makes {city}'s {niche.title()} Scene Special?",
+            "excerpt": f"An insider look at why {city} has become a world-class destination for {niche} lovers. Culture, quality, and innovation come together in unexpected ways.",
+            "category": "Culture",
+            "date": "Apr 2026",
+            "icon": "book-open"
+        },
+        {
+            "title": f"A Local's Guide to {city} Neighborhoods",
+            "excerpt": f"Each neighborhood in {city} offers a unique vibe. Here's our area-by-area breakdown to help you find the perfect spot.",
+            "category": "Neighborhoods",
+            "date": "Mar 2026",
+            "icon": "map"
+        }
+    ])
+
+    cards = []
+    for post in blog_posts[:3]:
+        icon = post.get("icon", "file-text")
+        card = f'''<article class="blog-card blog-card--static">
+  <div class="blog-card__image">
+    <i data-lucide="{icon}"></i>
+  </div>
+  <div class="blog-card__body">
+    <span class="blog-card__category">{post['category']}</span>
+    <h3 class="blog-card__title">{post['title']}</h3>
+    <p class="blog-card__excerpt">{post['excerpt']}</p>
+    <div class="blog-card__meta">
+      <span>{post['date']}</span>
+      <span class="blog-card__readmore">Read more →</span>
+    </div>
+  </div>
+</article>'''
+        cards.append(card)
+
+    return "\n".join(cards)
+
+
 # ──────────────────────────────────────────────
 # Template processing
 # ──────────────────────────────────────────────
@@ -269,6 +321,7 @@ def build_home(config, listings, templates):
         "CATEGORIES_JSON_RAW": categories_json,
         "AREAS_JSON_RAW": areas_json,
         "LISTINGS_COUNT": str(len(listings)),
+        "BLOG_CARDS": generate_blog_cards(config),
     }
 
     html = replace_placeholders(template, config, extra)

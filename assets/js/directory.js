@@ -23,6 +23,8 @@
     initFilters();
     initFooterLinks();
     initFadeAnimations();
+    initHeroParallax();
+    initLeafletMap();
   });
 
   // ══════════════════════════
@@ -318,6 +320,73 @@
       el.classList.add('fade-in');
       observer.observe(el);
     });
+  }
+
+  // ══════════════════════════
+  // HERO PARALLAX
+  // ══════════════════════════
+  function initHeroParallax() {
+    var bg = document.getElementById('heroBg');
+    if (!bg) return;
+
+    // Disable on mobile for performance
+    var isMobile = window.innerWidth < 768;
+    if (isMobile) return;
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var scrollY = window.pageYOffset;
+          var hero = document.getElementById('hero');
+          if (!hero) return;
+          var heroBottom = hero.offsetTop + hero.offsetHeight;
+          // Only animate while hero is in viewport
+          if (scrollY < heroBottom) {
+            var offset = scrollY * 0.35;
+            bg.style.transform = 'translate3d(0, ' + offset + 'px, 0)';
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+
+  // ══════════════════════════
+  // LEAFLET MAP (OpenStreetMap)
+  // ══════════════════════════
+  function initLeafletMap() {
+    var mapEl = document.getElementById('listingMap');
+    if (!mapEl || typeof L === 'undefined') return;
+
+    var lat = parseFloat(mapEl.getAttribute('data-lat'));
+    var lng = parseFloat(mapEl.getAttribute('data-lng'));
+    if (isNaN(lat) || isNaN(lng)) return;
+
+    // Remove placeholder content
+    var placeholder = mapEl.querySelector('.listing-map__placeholder');
+    if (placeholder) placeholder.remove();
+
+    var map = L.map('listingMap', {
+      scrollWheelZoom: false,
+      attributionControl: true
+    }).setView([lat, lng], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Custom coffee-colored marker
+    var icon = L.divIcon({
+      className: 'custom-map-marker',
+      html: '<div style="background:#6F4E37;width:32px;height:32px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M17 8h1a4 4 0 110 8h-1M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8zM6 2v4M10 2v4M14 2v4"/></svg></div>',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32]
+    });
+
+    L.marker([lat, lng], { icon: icon }).addTo(map);
   }
 
 })();
