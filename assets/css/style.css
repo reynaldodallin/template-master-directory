@@ -1016,6 +1016,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.listing-content__main,
+.listing-content__sidebar {
+  min-width: 0;
+  overflow: hidden;
+}
+
 .listing-header__category {
   display: inline-block;
   font-size: 0.75rem;
@@ -1378,6 +1384,8 @@ h1, h2, h3, h4, h5, h6 {
 .btn-block {
   display: flex;
   width: 100%;
+  justify-content: center;
+  text-align: center;
 }
 
 /* ══════════════════════════
