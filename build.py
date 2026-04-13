@@ -128,8 +128,10 @@ def generate_hours_html(hours):
 # ──────────────────────────────────────────────
 # Card generators
 # ──────────────────────────────────────────────
-def generate_listing_card(listing, config):
-    """Generate a single listing card HTML."""
+def generate_listing_card(listing, config, base_path=""):
+    """Generate a single listing card HTML.
+    base_path: prefix for relative URLs (e.g. '../' for pages inside subdirectories).
+    """
     categories = config.get("CATEGORIES", [])
     areas = config.get("AREAS", [])
     cat_name = get_category_name(categories, listing["category"])
@@ -148,10 +150,13 @@ def generate_listing_card(listing, config):
     if listing.get("site_built"):
         badge_html = f'<span class="badge badge-site">{config.get("BADGE_SITE_LIVE", "Site Available")}</span>'
 
+    link_href = f"{base_path}listing/{listing['id']}.html"
+    img_src = f"{base_path}{photo}"
+
     return f'''<article class="listing-card" data-category="{listing['category']}" data-area="{listing['area']}">
-  <a href="listing/{listing['id']}.html" class="card-link">
+  <a href="{link_href}" class="card-link">
     <div class="card-image">
-      <img src="{photo}" alt="{listing['name']}" loading="lazy" width="400" height="300">
+      <img src="{img_src}" alt="{listing['name']}" loading="lazy" width="400" height="300">
       <span class="card-category-badge">{cat_name}</span>
       {badge_html}
     </div>
@@ -351,7 +356,7 @@ def build_listing_pages(config, listings, templates):
 
         # Related listings (same category, max 3, exclude current)
         related = [l for l in listings if l["category"] == listing["category"] and l["id"] != listing["id"]][:3]
-        related_cards = "\n".join(generate_listing_card(r, config) for r in related)
+        related_cards = "\n".join(generate_listing_card(r, config, base_path="../") for r in related)
 
         # Phone / directions links
         phone_link = listing.get("phone", "").replace(" ", "").replace("-", "")
@@ -398,7 +403,7 @@ def build_category_pages(config, listings, templates):
 
     for cat in categories:
         cat_listings = [l for l in listings if l["category"] == cat["id"]]
-        listing_cards = "\n".join(generate_listing_card(l, config) for l in cat_listings)
+        listing_cards = "\n".join(generate_listing_card(l, config, base_path="../") for l in cat_listings)
 
         extra = {
             "CATEGORY_NAME": cat["name"],

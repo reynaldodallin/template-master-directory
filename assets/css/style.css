@@ -6,8 +6,8 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { min-height: 100vh; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+body { min-height: 100vh; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img, picture, video, svg { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; }
 a { color: inherit; text-decoration: none; }
@@ -238,13 +238,15 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--color-header-bg);
     padding: 2rem;
     gap: 0.5rem;
-    transform: translateX(100%);
-    transition: transform 0.3s var(--ease);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
     z-index: 99;
   }
 
   .nav__links.open {
-    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
   }
 
   .nav__link {
@@ -284,7 +286,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center center;
   display: block;
 }
 
