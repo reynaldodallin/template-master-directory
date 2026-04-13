@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="{{DIRECTORY_LANGUAGE}}" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{CATEGORY_NAME}} | {{DIRECTORY_NAME}}</title>
+  <meta name="description" content="{{CATEGORY_DESCRIPTION}}">
+  <link rel="icon" href="../{{FAVICON_URL}}" type="image/x-icon">
+
+  <meta property="og:title" content="{{CATEGORY_NAME}} | {{DIRECTORY_NAME}}">
+  <meta property="og:description" content="{{CATEGORY_DESCRIPTION}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="{{FONT_HEADING_URL}}" rel="stylesheet">
+  <link href="{{FONT_BODY_URL}}" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <header class="nav" id="nav">
+    <div class="nav__container">
+      <a href="../" class="nav__brand">
+        <span class="nav__logo-icon">&#9749;</span>
+        <span class="nav__logo-text">{{DIRECTORY_NAME}}</span>
+      </a>
+
+      <nav class="nav__links" id="navLinks">
+        <a href="../" class="nav__link">{{NAV_LINK_HOME}}</a>
+        <a href="../#categories" class="nav__link active">{{NAV_LINK_CATEGORIES}}</a>
+        <a href="../#listings" class="nav__link">{{NAV_LINK_LISTINGS}}</a>
+        <a href="../blog.html" class="nav__link">{{NAV_LINK_BLOG}}</a>
+        <a href="../contact.html" class="nav__link">{{NAV_LINK_CONTACT}}</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <i data-lucide="moon" class="theme-icon-dark"></i>
+          <i data-lucide="sun" class="theme-icon-light"></i>
+        </button>
+        <a href="{{NAV_CTA_URL}}" class="btn btn-primary nav__cta" target="_blank" rel="noopener">{{NAV_CTA_LABEL}}</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ BREADCRUMB ═══ -->
+  <div class="breadcrumb">
+    <div class="breadcrumb__container">
+      <a href="../">Home</a>
+      <span class="breadcrumb__sep">/</span>
+      <span class="breadcrumb__current">{{CATEGORY_NAME}}</span>
+    </div>
+  </div>
+
+  <!-- ═══ CATEGORY HEADER ═══ -->
+  <section class="category-header">
+    <div class="section__container">
+      <div class="category-header__icon"><i data-lucide="{{CATEGORY_ICON}}"></i></div>
+      <h1 class="category-header__title">{{CATEGORY_NAME}}</h1>
+      <p class="category-header__desc">{{CATEGORY_DESCRIPTION}}</p>
+      <span class="category-header__count">{{CATEGORY_COUNT}} listings</span>
+    </div>
+  </section>
+
+  <!-- ═══ LISTINGS GRID ═══ -->
+  <section class="section listings">
+    <div class="section__container">
+      <div class="listings__grid">
+        {{CATEGORY_LISTING_CARDS}}
+      </div>
+      <div class="related__back" style="margin-top:2rem;">
+        <a href="../" class="btn btn-outline">{{BACK_TO_LISTINGS_LABEL}}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" id="footer">
+    <div class="footer__container">
+      <div class="footer__grid">
+        <div class="footer__col footer__col--brand">
+          <span class="footer__logo">&#9749; {{DIRECTORY_NAME}}</span>
+          <p class="footer__tagline">{{FOOTER_TAGLINE}}</p>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">{{FOOTER_COMPANY_TITLE}}</h4>
+          <ul class="footer__links">
+            <li><a href="../about.html">{{FOOTER_ABOUT_LABEL}}</a></li>
+            <li><a href="../blog.html">{{FOOTER_BLOG_LABEL}}</a></li>
+            <li><a href="../contact.html">{{FOOTER_CONTACT_LABEL}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>{{FOOTER_COPYRIGHT}}</p>
+        <p><a href="{{POWERED_BY_URL}}" target="_blank" rel="noopener">{{POWERED_BY_LABEL}}</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="{{BTN_BACK_TO_TOP}}">
+    <i data-lucide="chevron-up"></i>
+  </button>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../assets/js/directory.js"></script>
+</body>
+</html>

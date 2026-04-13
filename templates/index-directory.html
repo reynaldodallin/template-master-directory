@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="{{DIRECTORY_LANGUAGE}}" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{SEO_TITLE}}</title>
+  <meta name="description" content="{{SEO_DESCRIPTION}}">
+  <meta name="keywords" content="{{SEO_KEYWORDS}}">
+  <link rel="canonical" href="{{CANONICAL_URL}}">
+  <link rel="icon" href="{{FAVICON_URL}}" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{OG_TITLE}}">
+  <meta property="og:description" content="{{OG_DESCRIPTION}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="og:type" content="{{OG_TYPE}}">
+  <meta property="og:url" content="{{OG_URL}}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="{{TWITTER_CARD}}">
+  <meta name="twitter:title" content="{{TWITTER_TITLE}}">
+  <meta name="twitter:description" content="{{TWITTER_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{TWITTER_IMAGE}}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="{{FONT_HEADING_URL}}" rel="stylesheet">
+  <link href="{{FONT_BODY_URL}}" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "{{DIRECTORY_NAME}}",
+    "description": "{{DIRECTORY_DESCRIPTION}}",
+    "url": "{{CANONICAL_URL}}",
+    "numberOfItems": {{LISTINGS_COUNT}},
+    "itemListElement": []
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <header class="nav" id="nav">
+    <div class="nav__container">
+      <a href="/" class="nav__brand">
+        <span class="nav__logo-icon">&#9749;</span>
+        <span class="nav__logo-text">{{DIRECTORY_NAME}}</span>
+      </a>
+
+      <nav class="nav__links" id="navLinks">
+        <a href="/" class="nav__link active">{{NAV_LINK_HOME}}</a>
+        <a href="#categories" class="nav__link">{{NAV_LINK_CATEGORIES}}</a>
+        <a href="#listings" class="nav__link">{{NAV_LINK_LISTINGS}}</a>
+        <a href="#blog" class="nav__link">{{NAV_LINK_BLOG}}</a>
+        <a href="contact.html" class="nav__link">{{NAV_LINK_CONTACT}}</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <i data-lucide="moon" class="theme-icon-dark"></i>
+          <i data-lucide="sun" class="theme-icon-light"></i>
+        </button>
+        <a href="{{NAV_CTA_URL}}" class="btn btn-primary nav__cta" target="_blank" rel="noopener">{{NAV_CTA_LABEL}}</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero__container">
+      <span class="hero__badge">{{HERO_BADGE}}</span>
+      <h1 class="hero__title">{{HERO_TITLE}}</h1>
+      <p class="hero__subtitle">{{HERO_SUBTITLE}}</p>
+      <div class="hero__search">
+        <div class="search-bar">
+          <i data-lucide="search" class="search-bar__icon"></i>
+          <input type="text" id="heroSearch" class="search-bar__input" placeholder="{{HERO_SEARCH_PLACEHOLDER}}">
+          <select id="heroCategoryFilter" class="search-bar__select">
+            <option value="">{{FILTER_ALL_LABEL}}</option>
+          </select>
+          <button class="btn btn-primary search-bar__btn" id="heroSearchBtn">{{SEARCH_BUTTON_LABEL}}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section class="stats" id="stats">
+    <div class="stats__container">
+      <div class="stat">
+        <span class="stat__number">{{STAT_TOTAL}}</span>
+        <span class="stat__label">{{STAT_TOTAL_LABEL}}</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">{{STAT_CATEGORIES}}</span>
+        <span class="stat__label">{{STAT_CATEGORIES_LABEL}}</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">{{STAT_AREAS}}</span>
+        <span class="stat__label">{{STAT_AREAS_LABEL}}</span>
+      </div>
+      <div class="stat">
+        <span class="stat__number">{{STAT_RATING}}</span>
+        <span class="stat__label">{{STAT_RATING_LABEL}}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CATEGORIES ═══ -->
+  <section class="section categories" id="categories">
+    <div class="section__container">
+      <span class="section__label">{{CATEGORIES_LABEL}}</span>
+      <h2 class="section__title">{{CATEGORIES_TITLE}}</h2>
+      <p class="section__subtitle">{{CATEGORIES_DESCRIPTION}}</p>
+      <div class="categories__grid">
+        {{CATEGORY_CARDS}}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURED LISTINGS ═══ -->
+  <section class="section listings" id="listings">
+    <div class="section__container">
+      <span class="section__label">{{LISTINGS_LABEL}}</span>
+      <h2 class="section__title">{{LISTINGS_TITLE}}</h2>
+      <p class="section__subtitle">{{LISTINGS_DESCRIPTION}}</p>
+
+      <!-- Filters -->
+      <div class="listings__filters" id="listingFilters">
+        <div class="filter-group">
+          <input type="text" id="searchInput" class="filter-input" placeholder="{{FILTER_SEARCH_PLACEHOLDER}}">
+        </div>
+        <div class="filter-group">
+          <select id="categoryFilter" class="filter-select">
+            <option value="">{{FILTER_ALL_LABEL}}</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="areaFilter" class="filter-select">
+            <option value="">{{FILTER_AREA_LABEL}}</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="sortFilter" class="filter-select">
+            <option value="rating">{{SORT_RATING_LABEL}}</option>
+            <option value="reviews">{{SORT_REVIEWS_LABEL}}</option>
+            <option value="name">{{SORT_NAME_LABEL}}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Listing Grid -->
+      <div class="listings__grid" id="listingsGrid">
+        {{LISTING_CARDS}}
+      </div>
+
+      <p class="listings__empty" id="listingsEmpty" style="display:none;">{{LISTINGS_EMPTY_MESSAGE}}</p>
+    </div>
+  </section>
+
+  <!-- ═══ CTA OWNER ═══ -->
+  <section class="section cta-owner" id="{{CTA_OWNER_SECTION_ID}}">
+    <div class="section__container">
+      <div class="cta-owner__content">
+        <h2 class="cta-owner__title">{{CTA_OWNER_TITLE}}</h2>
+        <p class="cta-owner__desc">{{CTA_OWNER_DESC}}</p>
+        <div class="cta-owner__stats">
+          <span>{{CTA_STAT_1}}</span>
+          <span>{{CTA_STAT_2}}</span>
+          <span>{{CTA_STAT_3}}</span>
+        </div>
+        <div class="cta-owner__buttons">
+          <a href="{{CTA_OWNER_LINK}}" class="btn btn-primary btn-lg" target="_blank" rel="noopener">{{CTA_OWNER_BUTTON}}</a>
+          <a href="{{CTA_OWNER_SECONDARY_LINK}}" class="btn btn-outline btn-lg" target="_blank" rel="noopener">{{CTA_OWNER_SECONDARY_BUTTON}}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BLOG ═══ -->
+  <section class="section blog" id="blog">
+    <div class="section__container">
+      <span class="section__label">{{BLOG_LABEL}}</span>
+      <h2 class="section__title">{{BLOG_TITLE}}</h2>
+      <p class="section__subtitle">{{BLOG_DESCRIPTION}}</p>
+      <div class="blog__grid" id="blogGrid">
+        <div class="blog-card blog-card--placeholder">
+          <div class="blog-card__body"><p>{{BLOG_EMPTY_MESSAGE}}</p></div>
+        </div>
+      </div>
+      <div class="blog__cta">
+        <a href="{{BLOG_VIEW_ALL_URL}}" class="btn btn-outline" target="_blank" rel="noopener">{{BLOG_VIEW_ALL_LABEL}}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" id="footer">
+    <div class="footer__container">
+      <div class="footer__grid">
+        <div class="footer__col footer__col--brand">
+          <span class="footer__logo">&#9749; {{DIRECTORY_NAME}}</span>
+          <p class="footer__tagline">{{FOOTER_TAGLINE}}</p>
+          <div class="footer__social">
+            <a href="{{SOCIAL_INSTAGRAM_URL}}" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+            <a href="{{SOCIAL_TWITTER_URL}}" target="_blank" rel="noopener" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+            <a href="{{SOCIAL_FACEBOOK_URL}}" target="_blank" rel="noopener" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">{{FOOTER_CATEGORIES_TITLE}}</h4>
+          <ul class="footer__links" id="footerCategories"></ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">{{FOOTER_AREAS_TITLE}}</h4>
+          <ul class="footer__links" id="footerAreas"></ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">{{FOOTER_COMPANY_TITLE}}</h4>
+          <ul class="footer__links">
+            <li><a href="about.html">{{FOOTER_ABOUT_LABEL}}</a></li>
+            <li><a href="blog.html">{{FOOTER_BLOG_LABEL}}</a></li>
+            <li><a href="contact.html">{{FOOTER_CONTACT_LABEL}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>{{FOOTER_COPYRIGHT}}</p>
+        <p><a href="{{POWERED_BY_URL}}" target="_blank" rel="noopener">{{POWERED_BY_LABEL}}</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="{{BTN_BACK_TO_TOP}}">
+    <i data-lucide="chevron-up"></i>
+  </button>
+
+  <!-- Listings data for JS -->
+  <script>
+    window.__DIRECTORY_CONFIG__ = {
+      categories: {{CATEGORIES_JSON_RAW}},
+      areas: {{AREAS_JSON_RAW}},
+      listings: {{LISTINGS_JSON}}
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Directory JS -->
+  <script src="./assets/js/directory.js"></script>
+</body>
+</html>
