@@ -56,12 +56,24 @@
       "name": "JBR"
     },
     {
-      "id": "deira",
-      "name": "Deira"
-    },
-    {
       "id": "jumeirah",
       "name": "Jumeirah"
+    },
+    {
+      "id": "difc",
+      "name": "DIFC"
+    },
+    {
+      "id": "business-bay",
+      "name": "Business Bay"
+    },
+    {
+      "id": "al-quoz",
+      "name": "Al Quoz"
+    },
+    {
+      "id": "creek-harbour",
+      "name": "Creek Harbour"
     }
   ],
   "SEO_TITLE": "Best Coffee Shops in Dubai | Dubai Coffee Guide",
