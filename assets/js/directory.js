@@ -363,11 +363,36 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '100px 0px -20px 0px' });
 
     elements.forEach(function (el) {
       el.classList.add('fade-in');
       observer.observe(el);
+    });
+
+    // On orientation change, force-check elements that may now be in viewport
+    // Fixes landscape mode: sections loaded offscreen stay invisible
+    function forceCheckVisible() {
+      var fadeEls = document.querySelectorAll('.fade-in:not(.visible)');
+      fadeEls.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight + 100 && rect.bottom > -100;
+        if (inView) {
+          el.classList.add('visible');
+          observer.unobserve(el);
+        }
+      });
+    }
+
+    window.addEventListener('orientationchange', function () {
+      setTimeout(forceCheckVisible, 300);
+    });
+
+    // Also check on resize for desktop orientation simulators
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(forceCheckVisible, 200);
     });
   }
 

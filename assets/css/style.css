@@ -161,12 +161,34 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.15rem;
-  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .nav__logo-icon {
   font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.nav__logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav__logo-city {
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nav__logo-tagline {
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+  white-space: nowrap;
 }
 
 .nav__links {
